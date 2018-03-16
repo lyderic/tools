@@ -1,4 +1,4 @@
-package gotools
+package tools
 
 import (
 	"log"
