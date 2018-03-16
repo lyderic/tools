@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func execute(command string, args ...string) {
+func Execute(command string, args ...string) {
 	cmd := exec.Command(command, args...)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout

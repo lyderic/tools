@@ -9,7 +9,7 @@ func init() {
 	log.SetFlags(log.Lshortfile)
 }
 
-func checkBinaries(binaries ...string) {
+func CheckBinaries(binaries ...string) {
 	for _, binary := range binaries {
 		_, e := exec.LookPath(binary)
 		if e != nil {
