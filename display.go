@@ -3,39 +3,56 @@ package tools
 import (
 	"fmt"
 	"log"
-	"os"
-	"os/exec"
+)
+
+/*
+Possible display colors (ANSI colors)
+*/
+const (
+	BLACK   = 30
+	RED     = 31
+	GREEN   = 32
+	YELLOW  = 33
+	BLUE    = 34
+	MAGENTA = 35
+	CYAN    = 36
+	WHITE   = 37
 )
 
 func init() {
 	log.SetFlags(log.Lshortfile)
 }
 
+/*
+fmt.Print, with color
+*/
+func PrintColor(color int, message ...interface{}) {
+	fmt.Printf("\033[%dm", color)
+	fmt.Print(message...)
+	fmt.Printf("\033[0m")
+}
+
+/*
+fmt.Println, with color
+*/
+func PrintColorln(color int, message ...interface{}) {
+	fmt.Printf("\033[%dm", color)
+	fmt.Println(message...)
+	fmt.Printf("\033[0m")
+}
+
+/*
+fmt.Printf, with color
+*/
+func PrintColorf(color int, format string, message ...interface{}) {
+	fmt.Printf("\033[%dm", color)
+	fmt.Printf(format, message...)
+	fmt.Printf("\033[0m")
+}
+
+/*
+Print message in red, append newline.
+*/
 func PrintRed(message string) {
-	fmt.Printf("\033[31m%s\033[0m\n", message)
-}
-
-func GetTermWidth() int {
-	_, w := GetTermDim()
-	return w
-}
-
-func GetTermDim() (int, int) {
-	cmd := exec.Command("stty", "size")
-	cmd.Stdin = os.Stdin
-	termDim, err := cmd.Output()
-	if err != nil {
-		log.Fatal(err)
-	}
-	var h, w int
-	fmt.Sscan(string(termDim), &h, &w)
-	return h, w
-}
-
-func WipeLine() {
-	fmt.Print("\r")
-	for i := 0; i < GetTermWidth(); i++ {
-		fmt.Print(" ")
-	}
-	fmt.Print("\r")
+	PrintColorln(RED, message)
 }
