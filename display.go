@@ -16,7 +16,7 @@ func PrintRed(message string) {
 }
 
 func GetTermWidth() int {
-	_, w := getTermDim()
+	_, w := GetTermDim()
 	return w
 }
 
@@ -34,7 +34,7 @@ func GetTermDim() (int, int) {
 
 func WipeLine() {
 	fmt.Print("\r")
-	for i := 0; i < getTermWidth(); i++ {
+	for i := 0; i < GetTermWidth(); i++ {
 		fmt.Print(" ")
 	}
 	fmt.Print("\r")
