@@ -14,7 +14,7 @@ func PathExists(path string) (found bool) {
 	return
 }
 
-func getHomeDir() string {
+func GetHomeDir() string {
 	user, err := user.Current()
 	if err != nil {
 		log.Fatal(err)
