@@ -16,7 +16,7 @@ func PathExists(path string) (found bool) {
 	return
 }
 
-func copy(from, to string) error {
+func Copy(from, to string) error {
 	if !PathExists(from) {
 		return errors.New("tools.Copy: source file not found! Copy aborted.")
 	}
