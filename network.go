@@ -1,7 +1,7 @@
 package tools
 
 import (
-  "fmt"
+	"fmt"
 	"net"
 )
 
