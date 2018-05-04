@@ -1,12 +1,12 @@
 package tools
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"errors"
 	"io"
 	"log"
 	"os"
-  "crypto/md5"
-  "encoding/hex"
 	"os/user"
 )
 
