@@ -5,6 +5,8 @@ import (
 	"io"
 	"log"
 	"os"
+  "crypto/md5"
+  "encoding/hex"
 	"os/user"
 )
 
@@ -47,4 +49,20 @@ func GetHomeDir() string {
 		log.Fatal(err)
 	}
 	return user.HomeDir
+}
+
+func Md5(path string) (string, error) {
+	var output string
+	file, err := os.Open(path)
+	if err != nil {
+		return output, err
+	}
+	defer file.Close()
+	hash := md5.New()
+	if _, err := io.Copy(hash, file); err != nil {
+		return output, err
+	}
+	hashInBytes := hash.Sum(nil)[:16]
+	output = hex.EncodeToString(hashInBytes)
+	return output, nil
 }
