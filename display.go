@@ -3,6 +3,7 @@ package tools
 import (
 	"fmt"
 	"log"
+  "strconv"
 )
 
 /*
@@ -55,4 +56,31 @@ Print message in red, append newline.
 */
 func PrintRed(message string) {
 	PrintColorln(RED, message)
+}
+
+/*
+Returns a string representation with thousand separator.
+Thanks to: https://www.kcartlidge.com/snippets/numbers-with-thousands-separators-using-golang.html
+*/
+func ThousandSeparator(i int) string {
+	s := strconv.Itoa(i)
+	r1 := ""
+	idx := 0
+
+	// Reverse and interleave the separator.
+	for i = len(s) - 1; i >= 0; i-- {
+		idx++
+		if idx == 4 {
+			idx = 1
+			r1 = r1 + ","
+		}
+		r1 = r1 + string(s[i])
+	}
+
+	// Reverse back and return.
+	r2 := ""
+	for i = len(r1) - 1; i >= 0; i-- {
+		r2 = r2 + string(r1[i])
+	}
+	return r2
 }
