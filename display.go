@@ -89,8 +89,9 @@ func ThousandSeparator(i int) string {
 /*
 Pipe a string to less
 (ideally, check that less is installed before running this!)
+Source: https://stackoverflow.com/questions/28705716/paging-output-from-go
 */
-func less(message string) {
+func Less(message string) {
 	cmd := exec.Command("less")
 	cmd.Stdin = strings.NewReader(message)
 	cmd.Stdout = os.Stdout
