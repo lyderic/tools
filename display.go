@@ -3,7 +3,10 @@ package tools
 import (
 	"fmt"
 	"log"
-  "strconv"
+	"os"
+	"os/exec"
+	"strconv"
+	"strings"
 )
 
 /*
@@ -66,7 +69,6 @@ func ThousandSeparator(i int) string {
 	s := strconv.Itoa(i)
 	r1 := ""
 	idx := 0
-
 	// Reverse and interleave the separator.
 	for i = len(s) - 1; i >= 0; i-- {
 		idx++
@@ -76,11 +78,25 @@ func ThousandSeparator(i int) string {
 		}
 		r1 = r1 + string(s[i])
 	}
-
 	// Reverse back and return.
 	r2 := ""
 	for i = len(r1) - 1; i >= 0; i-- {
 		r2 = r2 + string(r1[i])
 	}
 	return r2
+}
+
+/*
+Pipe a string to less
+(ideally, check that less is installed before running this!)
+*/
+func less(message string) {
+	cmd := exec.Command("less")
+	cmd.Stdin = strings.NewReader(message)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
