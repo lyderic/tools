@@ -92,7 +92,7 @@ Pipe a string to less
 Source: https://stackoverflow.com/questions/28705716/paging-output-from-go
 */
 func Less(message string) {
-	cmd := exec.Command("less")
+	cmd := exec.Command("less", "-FRIX")
 	cmd.Stdin = strings.NewReader(message)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

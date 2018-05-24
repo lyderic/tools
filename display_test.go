@@ -15,6 +15,7 @@ func TestThousandSeparator(t *testing.T) {
 		999:        "999",
 	}
 	for k, v := range samples {
+		t.Logf("%v %v", k, v)
 		if ThousandSeparator(k) != v {
 			t.Errorf("ThousandSeparator doesn't work for %d [%s]!", k, v)
 		}
