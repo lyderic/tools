@@ -55,10 +55,24 @@ func PrintColorf(color int, format string, message ...interface{}) {
 }
 
 /*
-Print message in red, append newline.
+Print message in red, append newline
 */
 func PrintRed(message string) {
 	PrintColorln(RED, message)
+}
+
+/*
+Hide termincal cursor
+*/
+func HideCursor() {
+  fmt.Print("\033[?25l")
+}
+
+/*
+Show termincal cursor
+*/
+func ShowCursor() {
+  fmt.Print("\033[?25h")
 }
 
 /*
