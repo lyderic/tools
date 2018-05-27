@@ -7,7 +7,7 @@ import (
 func TestTernary(t *testing.T) {
 	t.Log("Testing plurals:")
 	for i := 0; i < 5; i++ {
-		output := ternary(i > 1, "apples", "apple")
+		output := Ternary(i > 1, "apples", "apple")
 		t.Logf("> %d %v", i, output)
 		switch i {
 		case 0, 1:
@@ -21,14 +21,14 @@ func TestTernary(t *testing.T) {
 		}
 	}
   t.Log("Testing booleans:")
-  booloutput := ternary("apple" != "orange", false, true)
+  booloutput := Ternary("apple" != "orange", false, true)
   if booloutput == true {
     t.Error("apple is not an orange!")
   } else {
     t.Logf("> apple = orange : %v", booloutput)
   }
   t.Log("Testing integers:")
-  intoutput := ternary(true, 1, 0)
+  intoutput := Ternary(true, 1, 0)
   if intoutput == 1 {
     t.Log("> true is 1")
   } else {
