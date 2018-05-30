@@ -65,14 +65,14 @@ func PrintRed(message string) {
 Hide termincal cursor
 */
 func HideCursor() {
-  fmt.Print("\033[?25l")
+	fmt.Print("\033[?25l")
 }
 
 /*
 Show termincal cursor
 */
 func ShowCursor() {
-  fmt.Print("\033[?25h")
+	fmt.Print("\033[?25h")
 }
 
 /*
@@ -105,13 +105,14 @@ Pipe a string to less
 (ideally, check that less is installed before running this!)
 Source: https://stackoverflow.com/questions/28705716/paging-output-from-go
 */
-func Less(message string) {
+func Less(message string) error {
+	var err error
 	cmd := exec.Command("less", "-FRIX")
 	cmd.Stdin = strings.NewReader(message)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-	err := cmd.Run()
-	if err != nil {
-		log.Fatal(err)
+	if err = cmd.Run(); err != nil {
+		return err
 	}
+	return nil
 }
