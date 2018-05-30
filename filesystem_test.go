@@ -6,14 +6,6 @@ import (
 	"testing"
 )
 
-func TestExists(t *testing.T) {
-	var err error
-	if err = Exists(os.Getenv("HOME")); err != nil {
-		t.Error("$HOME not found")
-	}
-	t.Log("$HOME found")
-}
-
 func TestPathExists(t *testing.T) {
 	/* we suppose there will always be a HOME */
 	home := os.Getenv("HOME")

@@ -3,17 +3,9 @@ package tools
 import (
 	"crypto/md5"
 	"encoding/hex"
-	"fmt"
 	"io"
 	"os"
 )
-
-func Exists(path string) error {
-	if _, err := os.Stat(path); os.IsNotExist(err) {
-		return err // doesn't exist, err != nil
-	}
-	return nil
-}
 
 func PathExists(path string) bool {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
@@ -22,11 +14,10 @@ func PathExists(path string) bool {
 	return true
 }
 
-func Copy(from, to string) error {
-	var err error
+func Copy(from, to string) (err error) {
 	var src, dst *os.File
-	if !PathExists(from) {
-		return fmt.Errorf("Copy: source file not found! (%s)", from)
+	if _,err = os.Stat(from);os.IsNotExist(err) {
+		return err
 	}
 	if src, err = os.Open(from); err != nil {
 		return err
@@ -42,7 +33,7 @@ func Copy(from, to string) error {
 	if err = dst.Sync(); err != nil {
 		return err
 	}
-	return nil
+	return err
 }
 
 func Md5(path string) (string, error) {
