@@ -16,7 +16,7 @@ func PathExists(path string) bool {
 
 func Copy(from, to string) (err error) {
 	var src, dst *os.File
-	if _,err = os.Stat(from);os.IsNotExist(err) {
+	if _, err = os.Stat(from); os.IsNotExist(err) {
 		return err
 	}
 	if src, err = os.Open(from); err != nil {

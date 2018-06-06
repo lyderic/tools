@@ -15,5 +15,5 @@ func TestCheckBinaries(t *testing.T) {
 	if err = CheckBinaries(nonexistent...); err == nil {
 		t.Errorf("There binaries should not be found: %v", nonexistent)
 	}
-	t.Logf("Binaries not found: %v (err=[%v])", nonexistent,err)
+	t.Logf("Binaries not found: %v (err=[%v])", nonexistent, err)
 }

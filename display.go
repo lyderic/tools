@@ -76,6 +76,13 @@ func ShowCursor() {
 }
 
 /*
+Wipe message
+*/
+func Wipe(message string) {
+	fmt.Printf("\r%s\r", strings.Repeat(" ", len(message)))
+}
+
+/*
 Returns a string representation with thousand separator.
 Thanks to: https://www.kcartlidge.com/snippets/numbers-with-thousands-separators-using-golang.html
 */
