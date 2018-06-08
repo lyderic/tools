@@ -23,6 +23,17 @@ const (
 	WHITE   = 37
 )
 
+/*
+NICE AND USEFUL UTF8 symbols
+*/
+
+const (
+	TICK   = "✔"
+	BULLET = "•"
+	FAIL   = "✘"
+	PROMPT = "⮞"
+)
+
 func init() {
 	log.SetFlags(log.Lshortfile)
 }
