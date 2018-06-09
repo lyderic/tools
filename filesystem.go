@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+/* return true if a file or directory is found */
 func PathExists(path string) bool {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		return false
@@ -14,41 +15,41 @@ func PathExists(path string) bool {
 	return true
 }
 
-func Copy(from, to string) (err error) {
+/* copy a source file to a destination file, overwrite if exists */
+func Copy(srcpath, dstpath string) (err error) {
 	var src, dst *os.File
-	if _, err = os.Stat(from); os.IsNotExist(err) {
-		return err
+	if _, err = os.Stat(srcpath); os.IsNotExist(err) {
+		return
 	}
-	if src, err = os.Open(from); err != nil {
-		return err
+	if src, err = os.Open(srcpath); err != nil {
+		return
 	}
 	defer src.Close()
-	if dst, err = os.Create(to); err != nil {
-		return err
+	if dst, err = os.Create(dstpath); err != nil {
+		return
 	}
 	defer dst.Close()
 	if _, err = io.Copy(dst, src); err != nil {
-		return err
+		return
 	}
 	if err = dst.Sync(); err != nil {
-		return err
+		return
 	}
-	return err
+	return
 }
 
-func Md5(path string) (string, error) {
-	var err error
+/* MD5 hash of a file */
+func Md5(path string) (output string, err error) {
 	var file *os.File
-	var output string
 	if file, err = os.Open(path); err != nil {
-		return output, err
+		return
 	}
 	defer file.Close()
 	hash := md5.New()
 	if _, err = io.Copy(hash, file); err != nil {
-		return output, err
+		return
 	}
 	hashInBytes := hash.Sum(nil)[:16]
 	output = hex.EncodeToString(hashInBytes)
-	return output, nil
+	return 
 }
