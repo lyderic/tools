@@ -73,14 +73,14 @@ func PrintRed(message string) {
 }
 
 /*
-Hide termincal cursor
+Hide terminal cursor
 */
 func HideCursor() {
 	fmt.Print("\033[?25l")
 }
 
 /*
-Show termincal cursor
+Show terminal cursor
 */
 func ShowCursor() {
 	fmt.Print("\033[?25h")
