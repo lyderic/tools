@@ -7,7 +7,6 @@ import (
 )
 
 func TestTcpLocalPortIsOpen(t *testing.T) {
-	fmt.Println("[network]")
 	l, err := net.Listen("tcp", ":61970")
 	if err != nil {
 		t.Error(err)

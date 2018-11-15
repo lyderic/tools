@@ -6,7 +6,6 @@ import (
 )
 
 func TestTernary(t *testing.T) {
-	fmt.Println("[ternary]")
 	for i := 0; i < 5; i++ {
 		output := Ternary(i > 1, "apples", "apple")
 		fmt.Printf("> %d %v\n", i, output)
@@ -36,7 +35,6 @@ func TestTernary(t *testing.T) {
 }
 
 func TestTimestamp(t *testing.T) {
-	fmt.Println("[timestamp]")
 	fmt.Println(">", timestamp())
 	fmt.Println(">", timestampForFile())
 }

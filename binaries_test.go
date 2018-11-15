@@ -7,7 +7,6 @@ import (
 
 func TestCheckBinaries(t *testing.T) {
 	var err error
-	fmt.Println("[binaries]")
 	existent := []string{"ls", "more", "cat", "vi"}
 	if err = CheckBinaries(existent...); err != nil {
 		t.Errorf("These binaries should be found: %v\n", existent)

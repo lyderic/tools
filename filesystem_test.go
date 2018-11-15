@@ -8,7 +8,6 @@ import (
 )
 
 func TestPathExists(t *testing.T) {
-	fmt.Println("[Filesystem]")
 	/* we suppose there will always be a HOME */
 	home := os.Getenv("HOME")
 	foundHome := PathExists(home)

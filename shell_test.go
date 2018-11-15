@@ -6,7 +6,6 @@ import (
 )
 
 func TestBashExec(t *testing.T) {
-	fmt.Println("[bash]")
 	var err error
 	commands := []string{
 		"date",
