@@ -6,6 +6,7 @@ import (
 )
 
 func TestBashExec(t *testing.T) {
+	fmt.Println("[bash]")
 	var err error
 	commands := []string{
 		"date",
@@ -14,9 +15,9 @@ func TestBashExec(t *testing.T) {
 		fmt.Sprintf("echo %q", "hello quoted"),
 	}
 	for _, command := range commands {
+		fmt.Printf("> execution of %q:\n", command)
 		if err = BashExec(command); err != nil {
 			t.Errorf("command %q failed! %v\n", command, err)
 		}
-		t.Logf("successful execution of: %q\n", command)
 	}
 }

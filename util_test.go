@@ -1,14 +1,15 @@
 package tools
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestTernary(t *testing.T) {
-	t.Log("Testing plurals:")
+	fmt.Println("[ternary]")
 	for i := 0; i < 5; i++ {
 		output := Ternary(i > 1, "apples", "apple")
-		t.Logf("> %d %v", i, output)
+		fmt.Printf("> %d %v\n", i, output)
 		switch i {
 		case 0, 1:
 			if output != "apple" {
@@ -20,18 +21,22 @@ func TestTernary(t *testing.T) {
 			}
 		}
 	}
-	t.Log("Testing booleans:")
 	booloutput := Ternary("apple" != "orange", false, true)
 	if booloutput == true {
 		t.Error("apple is not an orange!")
 	} else {
-		t.Logf("> apple = orange : %v", booloutput)
+	fmt.Printf("> apple = orange : %v\n", booloutput)
 	}
-	t.Log("Testing integers:")
 	intoutput := Ternary(true, 1, 0)
 	if intoutput == 1 {
-		t.Log("> true is 1")
+		fmt.Printf("> true is 1\n")
 	} else {
 		t.Errorf("true should be 1! however it is: %v", intoutput)
 	}
+}
+
+func TestTimestamp(t *testing.T) {
+	fmt.Println("[timestamp]")
+	fmt.Println(">", timestamp())
+	fmt.Println(">", timestampForFile())
 }

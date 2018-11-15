@@ -1,19 +1,21 @@
 package tools
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestCheckBinaries(t *testing.T) {
 	var err error
+	fmt.Println("[binaries]")
 	existent := []string{"ls", "more", "cat", "vi"}
 	if err = CheckBinaries(existent...); err != nil {
-		t.Errorf("These binaries should be found: %v", existent)
+		t.Errorf("These binaries should be found: %v\n", existent)
 	}
-	t.Logf("Binaries found: %v (err=[%v])", existent, err)
+	fmt.Printf("> found: %v\n", existent)
 	nonexistent := []string{"rirififiloulou", "foobarbazboz"}
 	if err = CheckBinaries(nonexistent...); err == nil {
-		t.Errorf("There binaries should not be found: %v", nonexistent)
+		t.Errorf("These binaries should not be found: %v\n", nonexistent)
 	}
-	t.Logf("Binaries not found: %v (err=[%v])", nonexistent, err)
+	fmt.Printf("> error: %v\n", err)
 }

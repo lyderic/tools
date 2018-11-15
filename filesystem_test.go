@@ -1,26 +1,28 @@
 package tools
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"testing"
 )
 
 func TestPathExists(t *testing.T) {
+	fmt.Println("[Filesystem]")
 	/* we suppose there will always be a HOME */
 	home := os.Getenv("HOME")
 	foundHome := PathExists(home)
 	if !foundHome {
 		t.Error("No HOME found!")
 	} else {
-		t.Logf("HOME found: %s", home)
+		fmt.Printf("> HOME found: %s\n", home)
 	}
 	imaginaryPath := "/path/to/nonexistent/foobar"
 	foundImaginary := PathExists(imaginaryPath)
 	if foundImaginary {
 		t.Error(imaginaryPath, "should NOT be found!")
 	} else {
-		t.Logf("Imaginary path NOT found (%s)", imaginaryPath)
+		fmt.Printf("> Imaginary path NOT found (%s)\n", imaginaryPath)
 	}
 }
 
@@ -41,8 +43,8 @@ func TestCopy(t *testing.T) {
 	// check both file are the same!
 	srcMd5, _ := Md5(src)
 	dstMd5, _ := Md5(dst)
-	t.Logf("MD5 src: %s", srcMd5)
-	t.Logf("MD5 dst: %s", dstMd5)
+	fmt.Printf("> (copy) MD5 src: %s\n", srcMd5)
+	fmt.Printf("> (copy) MD5 dst: %s\n", dstMd5)
 	if srcMd5 != dstMd5 {
 		t.Error("MD5 checksums don't match")
 	}
@@ -60,7 +62,7 @@ func TestMd5(t *testing.T) {
 	if err != nil {
 		t.Error("MD5 computation failed")
 	}
-	t.Logf("MD5: %v", md5)
+	fmt.Printf("> MD5: %v\n", md5)
 	if md5 != "d6d37b104b688ceb8be24a0f9598a1df" {
 		t.Error("MD5 don't match")
 	}

@@ -2,7 +2,6 @@ package tools
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
 	"strconv"
@@ -33,10 +32,6 @@ const (
 	FAIL   = "✘"
 	PROMPT = "⮞"
 )
-
-func init() {
-	log.SetFlags(log.Lshortfile)
-}
 
 /*
 fmt.Print, with color
@@ -126,7 +121,6 @@ Source: https://stackoverflow.com/questions/28705716/paging-output-from-go
 func Less(message string) error {
 	cmd := exec.Command("less", "-FRIX")
 	cmd.Stdin = strings.NewReader(message)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
+	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	return cmd.Run()
 }
