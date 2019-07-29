@@ -61,10 +61,45 @@ func PrintColorf(color int, format string, message ...interface{}) {
 }
 
 /*
-Print message in red, append newline
+Convenience shortcuts to print in red as this color is often used
+to highlight errors
 */
-func PrintRed(message string) {
-	PrintColorln(RED, message)
+func PrintRed(message ...interface{}) {
+	PrintColor(RED, message...)
+}
+func PrintRedln(message ...interface{}) {
+	PrintColorln(RED, message...)
+}
+func PrintRedf(format string, message ...interface{}) {
+	PrintColorf(RED, format, message...)
+}
+
+/*
+Convenience shortcuts to print in green as this color is often used
+to indicate success
+*/
+func PrintGreen(message ...interface{}) {
+	PrintColor(GREEN, message...)
+}
+func PrintGreenln(message ...interface{}) {
+	PrintColorln(GREEN, message...)
+}
+func PrintGreenf(format string, message ...interface{}) {
+	PrintColorf(GREEN, format, message...)
+}
+
+/*
+Convenience shortcuts to print in yellow as this color is often used
+to highlight warnings
+*/
+func PrintYellow(message ...interface{}) {
+	PrintColor(YELLOW, message...)
+}
+func PrintYellowln(message ...interface{}) {
+	PrintColorln(YELLOW, message...)
+}
+func PrintYellowf(format string, message ...interface{}) {
+	PrintColorf(YELLOW, format, message...)
 }
 
 /*

@@ -24,6 +24,14 @@ func TestThousandSeparator(t *testing.T) {
 }
 
 func TestColors(t *testing.T) {
-	PrintRed("Printred")
-	PrintColorln(GREEN, "Printcolorln")
+	PrintRedln("Printredln")
+	PrintYellow("YELLOW")
+	PrintRed("RED")
+	PrintColorln(BLUE, "BLUE")
+	PrintColorln(CYAN, "Printcolorln")
+	PrintGreenf("PrintGreenf : %03d\n", 42)
+	for i := 30; i < 38; i++ {
+		PrintColor(i, "GO")
+	}
+	fmt.Println()
 }
