@@ -6,14 +6,14 @@ import (
 
 /*
 Check if a set of binaries can be found in $PATH.
-At first encounter of missing binary return error
-otherwise return nil
+At first encounter of missing binary return false
+otherwise return true
 */
-func CheckBinaries(binaries ...string) (err error) {
+func CheckBinaries(binaries ...string) bool {
 	for _, binary := range binaries {
-		if _, err = exec.LookPath(binary); err != nil {
-			return err
+		if _, err := exec.LookPath(binary); err != nil {
+			return false
 		}
 	}
-	return nil
+	return true
 }
