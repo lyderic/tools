@@ -21,8 +21,5 @@ func BashExec(command string) (err error) {
 	file.Close()
 	cmd := exec.Command(file.Name())
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
-	if err = cmd.Run(); err != nil {
-		return
-	}
-	return
+	return cmd.Run()
 }
