@@ -6,7 +6,9 @@ import (
 	"os/exec"
 )
 
-func Execute(command string, args ...string) error {
+/* Passthru execution
+   Simplest scenario */
+func Xeq(command string, args ...string) error {
 	cmd := exec.Command(command, args...)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
@@ -14,21 +16,30 @@ func Execute(command string, args ...string) error {
 	return cmd.Run()
 }
 
-type ExecutorOptions struct {
+/* More complex scenarii, involving options and result structs */
+
+type XeqOptions struct {
 	Executable string
 	Args       []string
 	Stdin      []byte
 	Envvars    []string
 }
 
-type ExecutorResult struct {
+type XeqResult struct {
 	XEQ    []string
 	Err    error
 	Stdout []byte
 	Stderr []byte
 }
 
-func Executor(options ExecutorOptions) (result ExecutorResult) {
+/* No options required */
+func XeqR(command string, args ...string) (result XeqResult) {
+	options := XeqOptions{command, args, []byte{}, []string{}}
+	return XeqOR(options)
+}
+
+/* Require options */
+func XeqOR(options XeqOptions) (result XeqResult) {
 	cmd := exec.Command(options.Executable, options.Args...)
 	result.XEQ = cmd.Args
 	if len(options.Stdin) != 0 {

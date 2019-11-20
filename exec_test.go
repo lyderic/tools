@@ -5,35 +5,35 @@ import (
 	"testing"
 )
 
-func TestExecute(t *testing.T) {
-	err := Execute("date", "+%F %T")
+func TestXeq(t *testing.T) {
+	err := Xeq("date", "+%F %T")
 	if err != nil {
 		t.Errorf("Execute failed with error: %v\n", err)
 	}
 }
 
-func TestExecutor(t *testing.T) {
-	options := ExecutorOptions{
+func TestXeqOR(t *testing.T) {
+	options := XeqOptions{
 		Executable: "date",
 		Args:       []string{"+%F %T"},
 	}
-	result := Executor(options)
+	result := XeqOR(options)
 	displayResult(result)
-	options = ExecutorOptions{
+	options = XeqOptions{
 		Executable: "nonexistentexecutable",
 	}
-	result = Executor(options)
+	result = XeqOR(options)
 	displayResult(result)
-	options = ExecutorOptions{
+	options = XeqOptions{
 		Executable: "env",
 		//Args:       []string{"$FOO", "$BAR"},
 		Envvars: []string{"FOO=bar", "BAR=foo"},
 	}
-	result = Executor(options)
+	result = XeqOR(options)
 	displayResult(result)
 }
 
-func displayResult(result ExecutorResult) {
+func displayResult(result XeqResult) {
 	fmt.Printf("XEQ: %v\n", result.XEQ)
 	fmt.Printf("Err: %v\n", result.Err)
 	fmt.Printf("Stdout: %q\n", string(result.Stdout))

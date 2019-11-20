@@ -3,8 +3,6 @@ package tools
 import (
 	"fmt"
 	"testing"
-
-	"github.com/lyderic/tools"
 )
 
 func TestCheckBinaries(t *testing.T) {
@@ -19,6 +17,6 @@ func TestCheckBinaries(t *testing.T) {
 	}
 	fmt.Printf("> not found: %v\n", nonexistent)
 	if err := CheckBinaries(nonexistent...); err != nil {
-		tools.PrintRedf("%v\n", err)
+		PrintRedf("%v\n", err)
 	}
 }
