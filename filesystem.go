@@ -3,6 +3,7 @@ package tools
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"fmt"
 	"io"
 	"os"
 )
@@ -13,6 +14,21 @@ func PathExists(path string) bool {
 		return false
 	}
 	return true
+}
+
+/* check if a directory is empty */
+func IsDirEmpty(dir string) bool {
+	fh, err := os.Open(dir)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		return false
+	}
+	defer fh.Close()
+	_, err = fh.Readdir(1)
+	if err == io.EOF {
+		return true
+	}
+	return false
 }
 
 /* copy a source file to a destination file, overwrite if exists */
@@ -51,5 +67,5 @@ func Md5(path string) (output string, err error) {
 	}
 	hashInBytes := hash.Sum(nil)[:16]
 	output = hex.EncodeToString(hashInBytes)
-	return 
+	return
 }

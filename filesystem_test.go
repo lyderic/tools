@@ -67,3 +67,9 @@ func TestMd5(t *testing.T) {
 	}
 	os.Remove(file)
 }
+
+func TestIsDirEmpty(t *testing.T) {
+	fmt.Println("/:", IsDirEmpty("/"))
+	fmt.Println("/etc/passwd:", IsDirEmpty("/etc/passwd"))     // file
+	fmt.Println("/etc/password:", IsDirEmpty("/etc/password")) // file not found
+}
