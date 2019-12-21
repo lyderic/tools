@@ -103,6 +103,20 @@ func PrintYellowf(format string, message ...interface{}) {
 }
 
 /*
+Convenience shortcuts to print in blue as this color is often used
+to convey information
+*/
+func PrintBlue(message ...interface{}) {
+	PrintColor(BLUE, message...)
+}
+func PrintBlueln(message ...interface{}) {
+	PrintColorln(BLUE, message...)
+}
+func PrintBluef(format string, message ...interface{}) {
+	PrintColorf(BLUE, format, message...)
+}
+
+/*
 Hide terminal cursor
 */
 func HideCursor() {
