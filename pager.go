@@ -9,7 +9,20 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"strings"
 )
+
+/*
+pipe string to less
+(ideally, check that less is installed before running this!)
+Source: https://stackoverflow.com/questions/28705716/paging-output-from-go
+*/
+func Less(message string) error {
+	cmd := exec.Command("less", "-FRIX")
+	cmd.Stdin = strings.NewReader(message)
+	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
+	return cmd.Run()
+}
 
 /* pipe command to less, using pipe */
 func LessPipe(command string, args ...string) (err error) {

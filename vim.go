@@ -12,7 +12,7 @@ import (
 Edit input string in vim and return edited string
 */
 func VimString(input string) (output string, err error) {
-	input = input + "\n" // to avoid 'incomplete last line in vim
+	input = input + "\n" // to avoid 'incomplete last line' in vim
 	var file *os.File
 	if file, err = ioutil.TempFile("", "lyderictoolstmp"); err != nil {
 		return
