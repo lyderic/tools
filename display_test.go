@@ -3,6 +3,7 @@ package tools
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
 func TestThousandSeparator(t *testing.T) {
@@ -34,4 +35,10 @@ func TestColors(t *testing.T) {
 		PrintColor(i, "GO")
 	}
 	fmt.Println()
+}
+
+func TestWipeLine(t *testing.T) {
+	fmt.Print("This line will be wiped in one second...")
+	time.Sleep(time.Second)
+	WipeLine()
 }

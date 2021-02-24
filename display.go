@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	terminal "github.com/wayneashleyberry/terminal-dimensions"
 )
 
 /*
@@ -35,6 +37,17 @@ Wipe message
 */
 func Wipe(message string) {
 	fmt.Printf("\r%s\r", strings.Repeat(" ", len(message)))
+}
+
+/*
+Wipe Line
+*/
+func WipeLine() {
+	w, err := terminal.Width()
+	if err != nil {
+		w = 80
+	}
+	Wipe(strings.Repeat(" ", int(w)))
 }
 
 /*
