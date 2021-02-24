@@ -18,3 +18,13 @@ func TestTcpLocalPortIsOpen(t *testing.T) {
 		t.Error("> Port TCP/61970 not open. There is problem")
 	}
 }
+
+func TestTcpPortIsOpen(t *testing.T) {
+	host := "google.com"
+	port := 443
+	if TcpPortIsOpen(host, port) {
+		fmt.Printf("Port %d on %q is in use\n", port, host)
+	} else {
+		t.Errorf("> Is %s down?", host)
+	}
+}
