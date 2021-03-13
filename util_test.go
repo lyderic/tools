@@ -24,7 +24,7 @@ func TestTernary(t *testing.T) {
 	if booloutput == true {
 		t.Error("apple is not an orange!")
 	} else {
-	fmt.Printf("> apple = orange : %v\n", booloutput)
+		fmt.Printf("> apple = orange : %v\n", booloutput)
 	}
 	intoutput := Ternary(true, 1, 0)
 	if intoutput == 1 {
@@ -35,6 +35,10 @@ func TestTernary(t *testing.T) {
 }
 
 func TestTimestamp(t *testing.T) {
-	fmt.Println(">", timestamp())
-	fmt.Println(">", timestampForFile())
+	fmt.Println(">", Timestamp())
+	fmt.Println(">", TimestampForFile())
+}
+
+func TestTracePoint(t *testing.T) {
+	fmt.Println(TracePoint())
 }
