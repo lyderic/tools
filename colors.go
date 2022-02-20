@@ -2,6 +2,11 @@ package tools
 
 import "github.com/fatih/color"
 
+/* We want the colors to be seen when piped to 'less -R' */
+func init() {
+	color.NoColor = false
+}
+
 var (
 	/* Plain colors printf*/
 	Green   = color.New(color.FgGreen).PrintfFunc()
