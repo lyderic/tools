@@ -1,25 +1,17 @@
 package tools
 
 import (
-	"fmt"
-	"io"
-	"io/ioutil"
+	"bytes"
 	"os"
 	"os/exec"
 )
 
-func BashExec(command string) (err error) {
-	var file *os.File
-	if file, err = ioutil.TempFile("",
-		"tools.lyderic.com.script."); err != nil {
-		return
+func BashExec(script []byte, args ...string) error {
+	if len(args) > 0 {
+		args = append([]string{"-s"}, args...) // prepending '-s'
 	}
-	file.Chmod(0700)
-	defer os.Remove(file.Name())
-	script := fmt.Sprintf("#!/bin/bash\n%s\n", command)
-	io.WriteString(file, script)
-	file.Close()
-	cmd := exec.Command(file.Name())
+	cmd := exec.Command("bash", args...)
+	cmd.Stdin = bytes.NewBuffer(script)
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	return cmd.Run()
 }

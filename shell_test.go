@@ -1,22 +1,23 @@
 package tools
 
 import (
-	"fmt"
 	"testing"
 )
 
 func TestBashExec(t *testing.T) {
 	var err error
-	commands := []string{
-		"date",
-		"date +%F",
-		"date | wc -c",
-		fmt.Sprintf("echo %q", "hello quoted"),
+	if err = BashExec([]byte(script)); err != nil {
+		t.Errorf("script %q failed! %v\n", script, err)
 	}
-	for _, command := range commands {
-		fmt.Printf("> execution of %q:\n", command)
-		if err = BashExec(command); err != nil {
-			t.Errorf("command %q failed! %v\n", command, err)
-		}
+	if err = BashExec([]byte(script), "foo", "bar", "baz"); err != nil {
+		t.Errorf("script %q failed! %v\n", script, err)
 	}
 }
+
+var script = `#!/bin/bash
+
+echo -n "Date: "
+date +%F
+echo "Input: ${1}"
+echo "@=${@}"
+`
