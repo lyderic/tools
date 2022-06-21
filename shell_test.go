@@ -6,10 +6,10 @@ import (
 
 func TestBashExec(t *testing.T) {
 	var err error
-	if err = BashExec([]byte(script)); err != nil {
+	if err = BashExec(script); err != nil {
 		t.Errorf("script %q failed! %v\n", script, err)
 	}
-	if err = BashExec([]byte(script), "foo", "bar", "baz"); err != nil {
+	if err = BashExec(script, "foo", "bar", "baz"); err != nil {
 		t.Errorf("script %q failed! %v\n", script, err)
 	}
 }
