@@ -8,8 +8,12 @@ import (
 
 func E(err error) {
 	if err != nil {
-		_, fn, line, _ := runtime.Caller(1)
-		Red("FATAL! %s:%d %v\n", filepath.Base(fn), line, err)
+		_, file, line, ok := runtime.Caller(1)
+		if ok {
+			Red("FATAL! %s:%d %v\n", filepath.Base(file), line, err)
+		} else {
+			Red("FATAL! (caller not found) %v\n", err)
+		}
 		os.Exit(42)
 	}
 }
